@@ -73,7 +73,7 @@ func _on_visibility_changed() -> void:
 		
 func Reset():
 	TicketChoice.select(0)
-	PriorityChoice.select(0)
+	PriorityChoice.select(1)
 	TitleText.text = ""
 	DescriptionText.text = ""
 	ErrorText.text = ""

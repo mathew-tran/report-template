@@ -25,6 +25,9 @@ func Setup(bugData):
 	BugNumberRef = bugData["BugNumber"]
 	if bugData["Deleted"]:
 		visible = false
+	var tween = get_tree().create_tween()
+	$HBoxContainer.scale = Vector2.ZERO
+	tween.tween_property($HBoxContainer, "scale", Vector2.ONE, .4)
 
 
 func _on_button_button_up() -> void:

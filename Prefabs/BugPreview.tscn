@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgj1e8kvo3og6"]
+[gd_scene load_steps=3 format=3 uid="uid://cgj1e8kvo3og6"]
 
 [ext_resource type="Script" uid="uid://thhdfioal5rm" path="res://Scripts/BugPreview.gd" id="1_jbxc6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jbxc6"]
+bg_color = Color(0.114897, 0.114897, 0.114897, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
 
 [node name="BugPreview" type="Panel" node_paths=PackedStringArray("BugNumber", "BugPriority", "Type", "BugTitle")]
 custom_minimum_size = Vector2(800, 60)
@@ -9,6 +16,7 @@ anchor_right = 1.0
 offset_right = -352.0
 offset_bottom = 60.0
 grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jbxc6")
 script = ExtResource("1_jbxc6")
 BugNumber = NodePath("HBoxContainer/BugNumber")
 BugPriority = NodePath("HBoxContainer/Priority")
@@ -27,8 +35,9 @@ grow_vertical = 2
 layout_mode = 0
 offset_left = 10.0
 offset_top = -22.0
-offset_right = 796.0
+offset_right = 810.0
 offset_bottom = 78.0
+pivot_offset = Vector2(400, 50)
 mouse_filter = 2
 
 [node name="BugNumber" type="Label" parent="HBoxContainer"]
