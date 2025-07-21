@@ -26,13 +26,38 @@ func GetPriorityHTMLString(tag, index):
 		"str" : GetPriorityString(index) 
 	})
 	
-func PrettyPrintBugData(bugData, bugNumber = 1):
+func GetEmoticonFromType(type):
+	match type:
+		TICKET_TYPE.BUG:
+			return "🐛"
+		TICKET_TYPE.FEEDBACK:
+			return "💬"
+		TICKET_TYPE.SUGGESTION:
+			return "💡"
+			
+func PrettyPrintBugData(bugData, bugNumber = 1, bugMax = 1):
 	var str = ""
 	str += "<table border='1' cellpadding='5' cellspacing='0'>"
-	str += "<tr><th>Ticket #</th><td>" + str(bugNumber) + "</td></tr>"
-	str += "<tr><th>Type</th><td>" + GetTicketTypeString(bugData["Type"]) + "</td></tr>"
-	str += "<tr><th>Priority</th><td>" + GetPriorityHTMLString("p", bugData["Priority"]) + "</td></tr>"
-	str += "<tr><th>Title</th><td>" + bugData["Title"] + "</td></tr>"
-	str += "<tr><th>Description</th><td>" + bugData["Desc"] + "</td></tr>"
+	str += "<tr><td><h4>Ticket #:</b> " + str(bugNumber) + "/" + str(bugMax) + "</td></tr>"
+	str += "<tr><td><b>Type:</b> " + GetTicketTypeString(bugData["Type"]) + GetEmoticonFromType(bugData["Type"]) + "</td></tr>"
+	str += "<tr><td><b>Priority:</b> " + GetPriorityHTMLString("span", bugData["Priority"]) + "</td></tr>"
+	str += "<tr><td><b>Title:</b> " + bugData["Title"] + "</td></tr>"
+	
+	var bugDesc = ""
+	for desc in bugData["Desc"].split("\n"):
+		bugDesc += "<p>" + desc + "</p>"
+	str += "<tr><td><b>Description:</b> <br>" + bugDesc + "</td></tr>"
+	str += "</table>"
+	return str
+
+func PrettyPrintFeedbackData(bugData, bugNumber = 1, bugMax = 1):
+	var str = ""
+	var bugDesc = ""
+	for desc in bugData["Desc"].split("\n"):
+		bugDesc += desc.strip_edges() + "<br>"
+	bugDesc = bugDesc.strip_edges()
+	bugDesc = bugDesc.rstrip("<br>")
+	str += "<table border='1' cellpadding='2' cellspacing='0' style='margin-bottom:4px;'>"
+	str += "<tr><td><b>" + str(bugNumber) + "/" + str(bugMax) + "</b> " + GetEmoticonFromType(bugData["Type"]) + " " + bugDesc + "</td></tr>"
 	str += "</table>"
 	return str

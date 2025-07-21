@@ -13,7 +13,8 @@ script = ExtResource("1_h2yge")
 custom_minimum_size = Vector2(150, 120)
 offset_right = 8.0
 offset_bottom = 8.0
-text = "CREATE TICKET"
+text = "CREATE TICKET
+(N)"
 
 [node name="CreateReportButton" type="Button" parent="."]
 custom_minimum_size = Vector2(150, 120)
@@ -21,7 +22,8 @@ offset_left = -1.0
 offset_top = 142.0
 offset_right = 149.0
 offset_bottom = 262.0
-text = "CREATE REPORT"
+text = "CREATE REPORT
+(R)"
 
 [node name="Panel" parent="." instance=ExtResource("1_ig7tw")]
 visible = false

@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://3sjsni2clauj"]
+[gd_scene load_steps=5 format=3 uid="uid://3sjsni2clauj"]
 
 [ext_resource type="Script" uid="uid://bao0yxeelao7a" path="res://Scripts/BugEditPanel.gd" id="1_d3f8o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3f8o"]
 bg_color = Color(0.000102518, 7.71506e-05, 0.0578361, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2crkb"]
+bg_color = Color(3.36915e-07, 0.258509, 0.351336, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j43sb"]
+bg_color = Color(3.46541e-06, 0.655732, 0.866172, 1)
 
 [node name="Panel" type="Panel" node_paths=PackedStringArray("TicketChoice", "PriorityChoice", "TitleText", "DescriptionText", "UpdateButton", "BugNumberText", "ErrorText")]
 anchors_preset = 15
@@ -54,7 +60,21 @@ text = "Ticket Number: "
 layout_mode = 2
 text = "001"
 
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Title: "
+
+[node name="TitleText" type="TextEdit" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(700, 40)
+layout_mode = 2
+focus_next = NodePath("../../HBoxContainer2/TicketChoice")
+placeholder_text = "please enter a title"
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
@@ -64,6 +84,7 @@ text = "Ticket Type"
 [node name="TicketChoice" type="OptionButton" parent="VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
+focus_next = NodePath("../../HBoxContainer3/PriorityChoice")
 selected = 0
 item_count = 3
 popup/item_0/text = "BUG"
@@ -74,6 +95,7 @@ popup/item_2/text = "SUGGESTION"
 popup/item_2/id = 2
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
@@ -83,6 +105,7 @@ text = "Priority"
 [node name="PriorityChoice" type="OptionButton" parent="VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
+focus_next = NodePath("../../HBoxContainer4/DescriptionText")
 selected = 0
 item_count = 3
 popup/item_0/text = "LOW"
@@ -91,18 +114,6 @@ popup/item_1/text = "MEDIUM"
 popup/item_1/id = 1
 popup/item_2/text = "HIGH"
 popup/item_2/id = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Title: "
-
-[node name="TitleText" type="TextEdit" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(400, 40)
-layout_mode = 2
-placeholder_text = "please enter a title"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 300)
@@ -114,17 +125,40 @@ layout_mode = 2
 text = "Description"
 
 [node name="DescriptionText" type="TextEdit" parent="VBoxContainer/HBoxContainer4"]
-custom_minimum_size = Vector2(400, 40)
+custom_minimum_size = Vector2(700, 40)
 layout_mode = 2
+focus_next = NodePath("../../Button")
 placeholder_text = "please enter description of what happens"
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "CREATE"
+focus_next = NodePath("../HBoxContainer/TitleText")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2crkb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_j43sb")
+text = "CREATE "
 
 [node name="Errorlabel" type="Label" parent="VBoxContainer"]
 self_modulate = Color(0.787542, 4.16331e-06, 5.77569e-07, 1)
 layout_mode = 2
 text = "asasdad"
 
+[node name="BackButton" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -558.0
+offset_top = -73.0
+offset_right = -458.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "BACK
+(ESC)"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="button_up" from="VBoxContainer/Button" to="." method="_on_button_button_up"]
+[connection signal="button_up" from="BackButton" to="." method="_on_back_button_button_up"]
