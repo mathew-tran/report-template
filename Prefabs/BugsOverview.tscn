@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0l3hyvo6bh7p"]
+
+[ext_resource type="Script" uid="uid://chhi1k7i011rx" path="res://Scripts/BugsOverview.gd" id="1_4mjw7"]
+
+[node name="BugsOverview" type="Panel" node_paths=PackedStringArray("BugHolder") groups=["BugsOverview"]]
+custom_minimum_size = Vector2(800, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 352.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4mjw7")
+BugHolder = NodePath("ScrollContainer/VBoxContainer")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_right = 667.0
+offset_bottom = 647.0
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(600, 80)
+layout_mode = 2
+text = "EMPTY"
+horizontal_alignment = 1
+vertical_alignment = 1

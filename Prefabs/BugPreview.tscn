@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgj1e8kvo3og6"]
+
+[ext_resource type="Script" uid="uid://thhdfioal5rm" path="res://Scripts/BugPreview.gd" id="1_jbxc6"]
+
+[node name="BugPreview" type="Panel" node_paths=PackedStringArray("BugNumber", "BugPriority", "Type", "BugTitle")]
+custom_minimum_size = Vector2(800, 120)
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -352.0
+offset_bottom = 120.0
+grow_horizontal = 2
+script = ExtResource("1_jbxc6")
+BugNumber = NodePath("HBoxContainer/BugNumber")
+BugPriority = NodePath("HBoxContainer/Priority")
+Type = NodePath("HBoxContainer/Type")
+BugTitle = NodePath("HBoxContainer/BugTitle")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_right = 1143.0
+offset_bottom = 40.0
+
+[node name="BugNumber" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "001"
+
+[node name="Priority" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "HIGH"
+
+[node name="Type" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "BUG"
+
+[node name="BugTitle" type="Label" parent="HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(420, 100)
+layout_mode = 2
+text = "The bug did this."
+vertical_alignment = 1

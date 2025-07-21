@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmt7io1y2rde4"]
+
+[ext_resource type="Script" uid="uid://bxafj1cgnf00j" path="res://Scripts/MainControl.gd" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://3sjsni2clauj" path="res://Prefabs/BugEditPanel.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://d0l3hyvo6bh7p" path="res://Prefabs/BugsOverview.tscn" id="2_0xm2m"]
+
+[node name="MainControl" type="CanvasLayer" groups=["MainControl"]]
+script = ExtResource("1_h2yge")
+
+[node name="BugsOverview" parent="." instance=ExtResource("2_0xm2m")]
+
+[node name="CreateTicketButton" type="Button" parent="."]
+custom_minimum_size = Vector2(150, 120)
+offset_right = 8.0
+offset_bottom = 8.0
+text = "CREATE TICKET"
+
+[node name="CreateReportButton" type="Button" parent="."]
+custom_minimum_size = Vector2(150, 120)
+offset_left = -1.0
+offset_top = 142.0
+offset_right = 149.0
+offset_bottom = 262.0
+text = "CREATE REPORT"
+
+[node name="Panel" parent="." instance=ExtResource("1_ig7tw")]
+visible = false
+
+[connection signal="button_up" from="CreateTicketButton" to="." method="_on_create_ticket_button_button_up"]
+[connection signal="button_up" from="CreateReportButton" to="." method="_on_create_report_button_button_up"]
