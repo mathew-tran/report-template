@@ -7,6 +7,7 @@ class_name BugPreview
 @export var Type : Label
 @export var BugTitle : Label
 
+var BugNumberRef
 #func GetData():
 	#return {
 		#"BugNumber" : BugNumberText.text,
@@ -21,3 +22,10 @@ func Setup(bugData):
 	BugPriority.text = Helper.GetPriorityString(bugData["Priority"])
 	Type.text = Helper.GetTicketTypeString(bugData["Type"])
 	BugTitle.text = bugData["Title"]
+	BugNumberRef = bugData["BugNumber"]
+	if bugData["Deleted"]:
+		visible = false
+
+
+func _on_button_button_up() -> void:
+	Finder.GetBugsOverview().OpenExistingBug(int(BugNumberRef) - 1)

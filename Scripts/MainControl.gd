@@ -5,8 +5,11 @@ class_name MainControl
 signal OnBugAdded(bugData)
 
 func _on_create_ticket_button_button_up() -> void:
-	$Panel.visible = true
+	$Panel.Open(null)
 
+func OpenBug(bugData):
+	$Panel.Open(bugData)
+	
 func CreateSection(type, title):
 	var tickets = Finder.GetBugsOverview().GetTicketsOfType(type)
 	if tickets.size() == 0:
