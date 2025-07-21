@@ -50,7 +50,7 @@ func PrettyPrintBugData(bugData, bugNumber = 1, bugMax = 1):
 	var str = ""
 	var bugDesc = ""
 	for desc in bugData["Desc"].split("\n"):
-		bugDesc += desc.strip_edges() + "<br>"
+		bugDesc +=  "<p>" + desc.strip_edges() + "</p>"
 	bugDesc = bugDesc.strip_edges()
 	bugDesc = bugDesc.rstrip("<br>")
 	str += "<table border='1' cellpadding='2' cellspacing='0' style='margin-bottom:4px;'>"
@@ -79,7 +79,7 @@ func PrettyPrintFeedbackData(bugData, bugNumber = 1, bugMax = 1):
 	var str = ""
 	var bugDesc = ""
 	for desc in bugData["Desc"].split("\n"):
-		bugDesc += desc.strip_edges() + "<br>"
+		bugDesc += "<p>" + desc.strip_edges() + "</p>"
 	bugDesc = bugDesc.strip_edges()
 	bugDesc = bugDesc.rstrip("<br>")
 	str += "<table border='1' cellpadding='2' cellspacing='0' style='margin-bottom:4px;'>"
