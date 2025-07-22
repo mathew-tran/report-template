@@ -9,7 +9,7 @@ border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 
-[node name="BugPreview" type="Panel" node_paths=PackedStringArray("BugNumber", "BugPriority", "Type", "BugTitle")]
+[node name="BugPreview" type="Panel" node_paths=PackedStringArray("BugNumber", "BugPriority", "Type", "BugTitle", "BugDesc")]
 custom_minimum_size = Vector2(800, 60)
 anchors_preset = 10
 anchor_right = 1.0
@@ -22,6 +22,7 @@ BugNumber = NodePath("HBoxContainer/BugNumber")
 BugPriority = NodePath("HBoxContainer/Priority")
 Type = NodePath("HBoxContainer/Type")
 BugTitle = NodePath("HBoxContainer/BugTitle")
+BugDesc = NodePath("HBoxContainer/BugDesc")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
@@ -57,8 +58,22 @@ text = "BUG"
 
 [node name="BugTitle" type="Label" parent="HBoxContainer"]
 clip_contents = true
-custom_minimum_size = Vector2(420, 60)
+custom_minimum_size = Vector2(220, 60)
 layout_mode = 2
+text = "The bug did this.sad
+ad
+asd
+asda"
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="BugDesc" type="Label" parent="HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(220, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 7
 text = "The bug did this.sad
 ad
 asd

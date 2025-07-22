@@ -6,6 +6,7 @@ class_name BugPreview
 @export var BugPriority : Label
 @export var Type : Label
 @export var BugTitle : Label
+@export var BugDesc : Label
 
 var BugNumberRef
 #func GetData():
@@ -21,8 +22,10 @@ func Setup(bugData):
 	BugNumber.text = bugData["BugNumber"]
 	BugPriority.text = Helper.GetPriorityString(bugData["Priority"])
 	Type.text = Helper.GetTicketTypeString(bugData["Type"])
+	BugDesc.text = bugData["Desc"]
 	BugTitle.text = bugData["Title"]
 	BugNumberRef = bugData["BugNumber"]
+	
 	if bugData["Deleted"]:
 		visible = false
 	var tween = get_tree().create_tween()
